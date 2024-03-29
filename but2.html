@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Risk Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/script.js/2.0.2/script.min.js" integrity="sha512-UWtTDM6wtl/qutDD6i1JOGZGiEd92dveVzuLl8sMBkMHlOHcbZdexM7ZrKkeaugW7vhqDnWc2pPD/ohEV+BBbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <h1>Disease Risk Calculator</h1>
+    <form id="calculator-form">
+        <label for="back-pain">Back Pain:</label>
+        <input type="number" id="back-pain" name="back-pain" required><br>
+
+        <label for="morning-stiffness">Duration of Morning Stiffness:</label>
+        <input type="number" id="morning-stiffness" name="morning-stiffness" required><br>
+
+        <label for="patient-global">Patient Global:</label>
+        <input type="number" id="patient-global" name="patient-global" required><br>
+
+        <label for="peripheral-pain-swelling">Peripheral Pain/Swelling:</label>
+        <input type="number" id="peripheral-pain-swelling" name="peripheral-pain-swelling" required><br>
+
+        <label for="esr">ESR:</label>
+        <input type="number" id="esr" name="esr" required><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("calculator-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Extract values from input fields
+            const backPain = parseFloat(document.getElementById("back-pain").value);
+            const morningStiffness = parseFloat(document.getElementById("morning-stiffness").value);
+            const patientGlobal = parseFloat(document.getElementById("patient-global").value);
+            const peripheralPainSwelling = parseFloat(document.getElementById("peripheral-pain-swelling").value);
+            const esr = parseFloat(document.getElementById("esr").value);
+
+            // Perform calculation
+            const result = 0.08 * backPain + 0.07 * morningStiffness + 0.11 * patientGlobal + 0.09 * peripheralPainSwelling + 0.29 * Math.sqrt(esr);
+
+            // Display result
+            document.getElementById("result").innerHTML = "Disease Risk Score: " + result.toFixed(2);
+        });
+    </script>
+</body>
+</html>
